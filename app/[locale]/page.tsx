@@ -117,7 +117,7 @@ const Home = () => {
     <div className="mx-auto max-w-full px-6 py-6 md:px-32">
       <h2 className="mb-6 text-center text-2xl font-semibold">{t('title')}</h2>
 
-      <div className="mb-4 flex items-center space-x-2">
+      <div className="mb-2 flex items-center space-x-2">
         <Select
           value={locale}
           onValueChange={(newLocale) => handleLanguageChange(newLocale)}
@@ -175,7 +175,9 @@ const Home = () => {
             </SelectItem>
           </SelectContent>
         </Select>
+      </div>
 
+      <div className="mb-4">
         <Input
           type="text"
           value={filterText}
