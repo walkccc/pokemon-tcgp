@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/ui/input';
 import {
@@ -31,6 +31,11 @@ const Home = () => {
   const t = useTranslations('Home');
   const router = useRouter();
   const locale = useLocale();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const getProbabilities = (packet: Packet, accumulatingRarities: boolean) => {
     const result: {
@@ -113,7 +118,7 @@ const Home = () => {
     router.push(`/${newLocale}`);
   };
 
-  return (
+  return isClient ? (
     <div className="mx-auto max-w-full px-6 py-6 md:px-32">
       <h2 className="mb-6 text-center text-2xl font-semibold">{t('title')}</h2>
 
@@ -231,6 +236,8 @@ const Home = () => {
         </TableBody>
       </Table>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 
